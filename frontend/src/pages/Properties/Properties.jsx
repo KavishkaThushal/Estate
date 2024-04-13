@@ -28,7 +28,7 @@ function Properties() {
   }
  
   return (
-    <div className='Wrapper'>
+    <div className='Wrapper-container'>
        <SearchBar/>
       <div className='  innerWidth properties-container  '>
        

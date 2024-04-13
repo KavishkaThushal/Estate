@@ -2,9 +2,12 @@ import React from 'react'
 import './PropertyCard.css';
 import {AiFillHeart} from 'react-icons/ai'
 import {truncate} from 'lodash'
+import {useNavigate} from 'react-router-dom'
 function PropertyCard({card}) {
+
+  const navigate=useNavigate()
   return (
-    <div className=" r-card small">
+    <div className=" r-card small" onClick={()=>(navigate(`../properties/${card.id}`))}>
          <AiFillHeart size={24} color='white' />
     <img src={card.image} alt='home'  />
    
