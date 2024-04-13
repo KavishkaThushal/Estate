@@ -10,11 +10,11 @@ export const createResidency=asyncHandler(async(req,res)=>{
         }
     })
     res.send({message:"Residency created sucessfully. "})
-  }catch(err){
-     if(err.code==="P2002"){
+  }catch(error){
+     if(error.code==="P2002"){
         throw new Error("A residency with address already there")
      }
-     throw new Error(err.message)
+     throw new Error(error.message)
   }
 })
 export const getAllResidencies=asyncHandler(async(req,res)=>{
@@ -33,6 +33,6 @@ export const getResidency=asyncHandler(async(req,res)=>{
         })
         res.send(residency)
     } catch (error) {
-        throw new Error(err.message)
+        throw new Error(error.message)
     }
 }) 
