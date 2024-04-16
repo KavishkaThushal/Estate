@@ -15,7 +15,7 @@ import UserDetailContext from "./Context/Context";
 
 function App() {
   const queryClient=new QueryClient()
-  const {userDetails,setUserDetails}=useState({
+  const [userDetails,setUserDetails]=useState({
     favourite:[],
     bookings:[],
     token:null
