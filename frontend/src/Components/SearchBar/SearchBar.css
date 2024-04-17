@@ -9,7 +9,7 @@
     padding: 10px 0;
     border-radius: 10px;
     width: 350px;
-    border: 1px solid grey;
+    border: 1px solid #5a73d7;
     background-color: white;
    
 }
@@ -18,5 +18,22 @@
 }
 .searchInput:focus{
    outline: none;
+    
+}
+.search-button{
+    background: #5a73d7;
+    border: 2px solid white;
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    margin-right: 5px;
+    
+}
+.search-button:hover{
+    cursor: pointer;
     
 }

@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage });
 
 router.post('/createrecidency',upload.single('image'),createrecidency)
-router.post('/booking',booking)
+router.post('/booking/:id',booking)
 router.get('/getall',getAll)
 
 

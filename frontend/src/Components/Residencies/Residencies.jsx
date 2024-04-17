@@ -5,7 +5,7 @@ import './Residencies.css';
 import 'swiper/css';
 
 import { slidersettings } from '../../utils/common';
-import PropertyCard from '../PropertyCard/PropertyCard';
+ import PropertyCard from '../PropertyCard/PropertyCard';
 import useProperties from '../../hooks/useProperties';
 import {PuffLoader} from 'react-spinners'
 const Residencies = () => {
@@ -55,7 +55,7 @@ const Residencies = () => {
 
                 <Swiper className='s-swiper' slidesPerView={slidersettings.slidesPerView} spaceBetween={slidersettings.spaceBetween} breakpoints={slidersettings.breakpoints}>
                 
-                    {data.slice(0,8).map((card, i) => {
+                    {data.response.slice(0,5).map((card, i) => {
                        return(<SwiperSlide key={i}>
                         <PropertyCard card={card} key={i} />
                      </SwiperSlide>) 

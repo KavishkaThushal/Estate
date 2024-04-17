@@ -32,7 +32,8 @@ export const createrecidency=async (req,res)=>{
 
 export const booking=async (req,res)=>{
     try {
-        const {email,id}=req.body
+        const {email}=req.body
+        const {id}=req.params
         const response=await User.findOneAndUpdate({email},{
             $push: {
                 bookvisit: {

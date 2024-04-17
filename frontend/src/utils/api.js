@@ -3,12 +3,12 @@ import dayjs from 'dayjs'
 import {toast} from 'react-toastify'
 
 export const api=axios.create({
-    baseURL:"http://localhost:9000/api",
+    baseURL:"http://localhost:7000/api",
 })
 
 export const getAllProperties=async ()=>{
     try {
-        const response=await api.get("/residency/allresidencies",{
+        const response=await api.get("/getall",{
             timeout:10*1000
         })
         if(response.status===400||response.status===500){
@@ -19,30 +19,26 @@ export const getAllProperties=async ()=>{
         toast.error("Something went wrong.")
     }
 }
-export const getProperty=async(id)=>{
-    try {
-        const response=await api.get(`/residency/${id}`,{
-            timeout:10*1000
-        })
-        if(response.status===400||response.status===500){
-            throw response.data
-        }
-        return response.data
-    } catch (error) {
-        toast.error("Something went wrong.")
-    }
-}
+// export const getProperty=async(id)=>{
+//     try {
+//         const response=await api.get(`/residency/${id}`,{
+//             timeout:10*1000
+//         })
+//         if(response.status===400||response.status===500){
+//             throw response.data
+//         }
+//         return response.data
+//     } catch (error) {
+//         toast.error("Something went wrong.")
+//     }
+// }
 
-export const createUser = async (email, token) => {
+export const createUser = async (name,email,image,password,confirmPassword) => {
     try {
       await api.post(
-        "/user/register",
-        { email },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        "/register",
+        { name,email,image,password,confirmPassword,},
+        
       );
     } catch (error) {
     
@@ -51,20 +47,16 @@ export const createUser = async (email, token) => {
      
     }
   };
-  export const bookVisit = async (date, propertyId, email, token) => {
+
+
+  export const bookVisit = async (email,id) => {
     try {
       await api.post(
-        `/user/bookVisit/${propertyId}`,
+        `/booking/${id}`,
         {
           email,
-          id: propertyId,
-          date: dayjs(date).format("DD/MM/YYYY"),
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        
       );
     } catch (error) {
       toast.error("Something went wrong, Please try again");

@@ -29,24 +29,25 @@ const Properties = () => {
     );
   }
   return (
-    <div className="wrapper">
-      <div className="flexColCenter paddings innerWidth properties-container">
-        <SearchBar filter={filter} setFilter={setFilter} />
+    <div className="properties-wrapper">
+      <SearchBar className='property-search' />
+      <div className="  properties-container">
+        
 
-        <div className="paddings flexCenter properties">
+        <div className=" properties">
           {
-            // data.map((card, i)=> (<PropertyCard card={card} key={i}/>))
+             data.response.map((card, i)=> (<PropertyCard card={card} key={i}/>))
 
-            data
-              .filter(
-                (property) =>
-                  property.title.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.city.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.country.toLowerCase().includes(filter.toLowerCase())
-              )
-              .map((card, i) => (
-                <PropertyCard card={card} key={i} />
-              ))
+            // data
+            //   .filter(
+            //     (property) =>
+            //       property.title.toLowerCase().includes(filter.toLowerCase()) ||
+            //       property.city.toLowerCase().includes(filter.toLowerCase()) ||
+            //       property.country.toLowerCase().includes(filter.toLowerCase())
+            //   )
+            //   .map((card, i) => (
+            //     <PropertyCard card={card} key={i} />
+            //   ))
           }
         </div>
       </div>

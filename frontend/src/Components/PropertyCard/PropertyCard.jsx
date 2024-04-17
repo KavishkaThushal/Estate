@@ -8,7 +8,7 @@ function PropertyCard({card}) {
   const navigate=useNavigate()
   return (
     <div className=" r-card small" onClick={()=>(navigate(`../properties/${card.id}`))}>
-         <AiFillHeart size={24} color='white' />
+        
     <img src={card.image} alt='home'  />
    
     <span className='secondaryText r-price small '>
