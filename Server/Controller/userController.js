@@ -28,3 +28,22 @@ export const createUser=async (req,res)=>{
        
     }
 }
+
+export const login=async (req,res)=>{
+  try {
+    const {email,password}=req.body
+    const validUser=await User.findOne({email})
+    if(!validUser)return res.send({success:false,message:"User not found."})
+
+    const validPassword=bcrypt.compareSync(password,validUser.password)
+    if(!validPassword)return res.send({success:false,message:"Incorrect Password."})
+    if(validUser && validPassword){
+      const token = jwt.sign({ userId: validUser._id}, process.env.SECRETKEY);
+      return res.cookie('access_token',token,{httpOnly:true}).status(200).send({token,success:true,message:"signin successfull."})
+    }
+    
+    
+  } catch (error) {
+    return res.send({success:false,message:"Server Error."})
+  }
+}

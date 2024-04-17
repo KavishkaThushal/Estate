@@ -1,8 +1,23 @@
 import express from "express"
-import { createrecidency } from "../Controller/recidencyController.js"
-
+import { booking, createrecidency, getAll } from "../Controller/recidencyController.js"
+import multer from 'multer';
 const router=express.Router()
 
-router.post('/createrecidency',createrecidency)
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads');
+    },
+    filename: function (req, file, cb) {
+      
+      cb(null, file.originalname);
+    },
+  });
+
+  const upload = multer({ storage: storage });
+
+router.post('/createrecidency',upload.single('image'),createrecidency)
+router.post('/booking',booking)
+router.get('/getall',getAll)
+
 
 export {router as residencyRouter}
