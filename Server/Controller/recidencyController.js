@@ -32,12 +32,13 @@ export const createrecidency=async (req,res)=>{
 
 export const booking=async (req,res)=>{
     try {
-        const {email}=req.body
+        const {email,date}=req.body
         const {id}=req.params
         const response=await User.findOneAndUpdate({email},{
             $push: {
                 bookvisit: {
-                    recidencyId:id,  
+                    recidencyId:id,
+                    date:date,  
                 }
             }
         })
@@ -47,10 +48,48 @@ export const booking=async (req,res)=>{
     }
 }
 
+export const removeBooking=async (req,res)=>{
+    try {
+        const {email}=req.body
+        const {id}=req.params
+        const response=await User.findOneAndUpdate({email},{
+            $pull: {
+                bookvisit: {
+                    recidencyId:id,  
+                }
+            }
+        })
+        if(response) return res.status(201).send({success:true,message:"Booking remove successfull."})  
+    } catch (error) {
+        return res.send({success:false,message:"Server Error."})
+    }
+}
+
 export const getAll=async (req,res)=>{
     try {
         const response=await Recidency.find()
         if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
+    } catch (error) {
+        return res.status(401).send({success:false,message:"Server error."})   
+    }
+}
+
+export const getAllBooking=async (req,res)=>{
+    try {
+        const {email}=req.body
+        const response=await User.findOne({email})
+        
+        if(response)return res.status(201).send({success:true,message:"successfull.",bookings:response.bookvisit}) 
+    } catch (error) {
+        return res.status(401).send({success:false,message:"Server error."})   
+    }
+}
+export const getProperty=async(req,res)=>{
+    try {
+        const {id}=req.body
+        const response=await Recidency.findOne({_id:id})
+        if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
+
     } catch (error) {
         return res.status(401).send({success:false,message:"Server error."})   
     }

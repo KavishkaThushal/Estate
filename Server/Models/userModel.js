@@ -23,6 +23,9 @@ const newSchema=mongoose.Schema({
             ref: 'Recidency',
             
           },
+          date:{
+            type:Date
+          }
 
     }],
     ownedrecidencies:[{

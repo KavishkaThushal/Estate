@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
-import { bookVisit, } from "../../utils/api";
+import { bookVisit, getpro, } from "../../utils/api";
 import { PuffLoader } from "react-spinners";
 import { AiFillHeart } from "react-icons/ai";
 import "./Property.css";
@@ -13,41 +13,44 @@ import Map from "../../components/Map/Map";
 //import useAuthCheck from "../../hooks/useAuthCheck";
 //import { useAuth0 } from "@auth0/auth0-react";
 import BookingModal from "../../components/BookingModal/BookingModal";
-// import UserDetailContext from "../../context/UserDetailContext.js";
+
 import { Button } from "@mantine/core";
 import { toast } from "react-toastify";
+import UserDetailContext from "../../Context/Context";
 
 const Property = () => {
   const { pathname } = useLocation();
-  console.log(pathname)
-  // const id = pathname.split("/").slice(-1)[0];
-  // console.log(id)
-  const id=12344
+ 
+   const id = pathname.split("/").slice(-1)[0];
+  
+  
 
-  const { data, isLoading, isError } = useQuery(["resd", id], () =>
-    bookVisit(email,id)
-  );
+   const { data, isLoading, isError } = useQuery(["resd", id], () =>
+   getpro(id)
+ );
+ 
+console.log(data)
 
-  //const [modalOpened, setModalOpened] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
   //const { validateLogin } = useAuthCheck();
  // const { user } = useAuth0();
 
-  // const {
-  //   userDetails: { token, bookings },
-  //   setUserDetails,
-  // } = useContext(UserDetailContext);
+  const {
+    userDetails: {bookings,email },
+    setUserDetails,
+  } = useContext(UserDetailContext);
 
-  // const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
-  //   mutationFn: () => removeBooking(id, user?.email, token),
-  //   onSuccess: () => {
-  //     setUserDetails((prev) => ({
-  //       ...prev,
-  //       bookings: prev.bookings.filter((booking) => booking?.id !== id),
-  //     }));
+  const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
+    mutationFn: () => removeBooking(id, email),
+    onSuccess: () => {
+      setUserDetails((prev) => ({
+        ...prev,
+        bookings: prev.bookings.filter((booking) => booking?.id !== id),
+      }));
 
-  //     toast.success("Booking cancelled", { position: "bottom-right" });
-  //   },
-  // });
+      toast.success("Booking cancelled", { position: "bottom-right" });
+    },
+  });
 
   if (isLoading) {
     return (
@@ -70,24 +73,22 @@ const Property = () => {
   }
 
   return (
-    <div className="wrapper">
+    <div className="property-wrapper">
       <div className="flexColStart paddings innerWidth property-container">
         {/* like button */}
-        <div className="like">
-          <Heart id={id}/>
-        </div>
+        
 
         {/* image */}
-        <img src={data?.image} alt="home image" />
+        <img src={data.response?.image} alt="home image" />
 
         <div className="flexCenter property-details">
           {/* left */}
           <div className="flexColStart left">
             {/* head */}
             <div className="flexStart head">
-              <span className="primaryText">{data?.title}</span>
+              <span className="primaryText">{data.response?.title}</span>
               <span className="orangeText" style={{ fontSize: "1.5rem" }}>
-                $ {data?.price}
+                $ {data.response?.price}
               </span>
             </div>
 
@@ -96,26 +97,26 @@ const Property = () => {
               {/* bathrooms */}
               <div className="flexStart facility">
                 <FaShower size={20} color="#1F3E72" />
-                <span>{data?.facilities?.bathrooms} Bathrooms</span>
+                <span>{data.response?.facilities[0].bathrooms} Bathrooms</span>
               </div>
 
               {/* parkings */}
               <div className="flexStart facility">
                 <AiTwotoneCar size={20} color="#1F3E72" />
-                <span>{data?.facilities.parkings} Parking</span>
+                <span>{data.response?.facilities[0].parkings} Parking</span>
               </div>
 
               {/* rooms */}
               <div className="flexStart facility">
                 <MdMeetingRoom size={20} color="#1F3E72" />
-                <span>{data?.facilities.bedrooms} Room/s</span>
+                <span>{data.response?.facilities[0].bedrooms} Room/s</span>
               </div>
             </div>
 
             {/* description */}
 
             <span className="secondaryText" style={{ textAlign: "justify" }}>
-              {data?.description}
+              {data.response?.description}
             </span>
 
             {/* address */}
@@ -123,14 +124,15 @@ const Property = () => {
             <div className="flexStart" style={{ gap: "1rem" }}>
               <MdLocationPin size={25} />
               <span className="secondaryText">
-                {data?.address}{" "}
-                {data?.city}{" "}
-                {data?.country}
+                {data.response?.address}{" "}
+                {data.response?.city}{" "}
+                {data.response?.country}
               </span>
             </div>
 
             {/* booking button */}
-            {/* {bookings?.map((booking) => booking.id).includes(id) ? (
+            {bookings?.map((booking) => booking.
+recidencyId).includes(id) ? (
               <>
                 <Button
                   variant="outline"
@@ -143,34 +145,35 @@ const Property = () => {
                 </Button>
                 <span>
                   Your visit already booked for date{" "}
-                  {bookings?.filter((booking) => booking?.id === id)[0].date}
+                  {bookings?.filter((booking) => booking?.recidencyId === id)[0].date}
                 </span>
+                
               </>
             ) : (
               <button
                 className="button"
                 onClick={() => {
-                  validateLogin() && setModalOpened(true);
+                  setModalOpened(true);
                 }}
               >
                 Book your visit
               </button>
-            )} */}
+            )}
 
-            {/* <BookingModal
+            <BookingModal
               opened={modalOpened}
               setOpened={setModalOpened}
               propertyId={id}
-              email={user?.email}
-            /> */}
+              email={email}
+            />
           </div>
 
           {/* right side */}
           <div className="map">
             <Map
-              address={data?.address}
-              city={data?.city}
-              country={data?.country}
+              address={data.response?.address}
+              city={data.response?.city}
+              country={data.response?.country}
             />
           </div>
         </div>

@@ -5,14 +5,17 @@ import { useMutation } from "react-query";
 import UserDetailContext from "../../Context/Context.jsx";
 import { bookVisit } from "../../utils/api.js";
 import { toast } from "react-toastify";
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+
 import dayjs from "dayjs";
 const BookingModal = ({ opened, setOpened, email, propertyId }) => {
   const [value, setValue] = useState(null);
   const {
-    userDetails: { token },
+    userDetails,
     setUserDetails,
   } = useContext(UserDetailContext);
-
+    console.log(userDetails.bookings[0])
   const handleBookingSuccess = () => {
     toast.success("You have booked your visit", {
       position: "bottom-right",
@@ -22,15 +25,16 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
       bookings: [
         ...prev.bookings,
         {
-          id: propertyId,
+          recidencyId: propertyId,
           date: dayjs(value).format("DD/MM/YYYY"),
+          
         },
       ],
     }));
   };
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => bookVisit(value, propertyId, email, token),
+    mutationFn: () => bookVisit(value, propertyId, email),
     onSuccess: () => handleBookingSuccess(),
     onError: ({ response }) => toast.error(response.data.message),
     onSettled: () => setOpened(false),

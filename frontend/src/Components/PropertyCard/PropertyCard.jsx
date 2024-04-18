@@ -4,10 +4,10 @@ import {AiFillHeart} from 'react-icons/ai'
 import {truncate} from 'lodash'
 import {useNavigate} from 'react-router-dom'
 function PropertyCard({card}) {
-
+    
   const navigate=useNavigate()
   return (
-    <div className=" r-card small" onClick={()=>(navigate(`../properties/${card.id}`))}>
+    <div className=" r-card small" onClick={()=>(navigate(`../properties/${card._id}`))}>
         
     <img src={card.image} alt='home'  />
    

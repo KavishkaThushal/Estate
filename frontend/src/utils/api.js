@@ -19,19 +19,7 @@ export const getAllProperties=async ()=>{
         toast.error("Something went wrong.")
     }
 }
-// export const getProperty=async(id)=>{
-//     try {
-//         const response=await api.get(`/residency/${id}`,{
-//             timeout:10*1000
-//         })
-//         if(response.status===400||response.status===500){
-//             throw response.data
-//         }
-//         return response.data
-//     } catch (error) {
-//         toast.error("Something went wrong.")
-//     }
-// }
+
 
 export const createUser = async (name,email,image,password,confirmPassword) => {
     try {
@@ -49,10 +37,26 @@ export const createUser = async (name,email,image,password,confirmPassword) => {
   };
 
 
-  export const bookVisit = async (email,id) => {
+  export const bookVisit = async (email,id,date) => {
     try {
       await api.post(
         `/booking/${id}`,
+        {
+          email,
+          date: dayjs(date).format("DD/MM/YYYY")
+        },
+        
+      );
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      throw error;
+    }
+  };
+
+  export const removeBook = async (email,id) => {
+    try {
+      await api.post(
+        `/removebooking/${id}`,
         {
           email,
         },
@@ -63,3 +67,29 @@ export const createUser = async (name,email,image,password,confirmPassword) => {
       throw error;
     }
   };
+
+  export const getpro=async(id)=>{
+    try {
+      const response=await api.post("/getProperty",{id})
+      
+      return response.data
+      
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      console.log(error)
+      throw error;
+    }
+  }
+
+  export const getAllBookings=async(email)=>{
+    try {
+      const response=await api.post("/getallbookings",{email})
+      
+      return response.data
+      
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      console.log(error)
+      throw error;
+    }
+  }

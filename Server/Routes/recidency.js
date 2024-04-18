@@ -1,5 +1,5 @@
 import express from "express"
-import { booking, createrecidency, getAll } from "../Controller/recidencyController.js"
+import { booking, createrecidency, getAll, getAllBooking, getProperty, removeBooking } from "../Controller/recidencyController.js"
 import multer from 'multer';
 const router=express.Router()
 
@@ -17,7 +17,10 @@ const storage = multer.diskStorage({
 
 router.post('/createrecidency',upload.single('image'),createrecidency)
 router.post('/booking/:id',booking)
+router.post('/removebooking/:id',removeBooking)
+router.post('/getallbookings',getAllBooking)
 router.get('/getall',getAll)
+router.post('/getProperty',getProperty)
 
 
 export {router as residencyRouter}
