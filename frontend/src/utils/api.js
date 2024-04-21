@@ -21,13 +21,15 @@ export const getAllProperties=async ()=>{
 }
 
 
-export const createUser = async (name,email,image,password,confirmPassword) => {
+export const createUser = async (name,email,password,confirmPassword) => {
     try {
-      await api.post(
+     const response= await api.post(
         "/register",
-        { name,email,image,password,confirmPassword,},
+        {name,email,password,confirmPassword},
         
       );
+      
+      localStorage.setItem('token',response.data.token)
     } catch (error) {
     
       toast.error("Something went wrong, Please try again");
@@ -84,6 +86,19 @@ export const createUser = async (name,email,image,password,confirmPassword) => {
   export const getAllBookings=async(email)=>{
     try {
       const response=await api.post("/getallbookings",{email})
+      
+      return response.data
+      
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      console.log(error)
+      throw error;
+    }
+  }
+  
+  export const getUserDetails=async(email)=>{
+    try {
+      const response=await api.post("/userdetails",{email})
       
       return response.data
       

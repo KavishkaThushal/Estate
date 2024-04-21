@@ -7,34 +7,53 @@ import {useMutation} from "react-query"
 import { createUser } from '../../utils/api'
 import UserDetailContext from '../../Context/Context'
 function Layout() {
-  const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
-  const { setUserDetails } = useContext(UserDetailContext);
-  const { mutate } = useMutation({
-    mutationKey: [user?.email],
-    mutationFn: (token) => {createUser(user?.email, token)
-      console.log(token)},
-  });
+  
+  // const {userDetails:{details},setUserDetails,
+  // } = useContext(UserDetailContext);
+ 
+  //  const
+
+  //   const { mutate: register, isLoading: loading } = useMutation({
+  //   mutationFn: () => createUser(name,email,password,confirmPassword),
+  //   onSuccess: () => {
+  //     setUserDetails((prev) => ({
+  //       ...prev,
+  //       email: email,
+  //       details:{name:name,email:email,password:password,confirmPassword:confirmPassword}
+  //     }));
+       
+  //     toast.success("Register successfully", { position: "bottom-right" });
+  //   },
+  // });
+
+  // const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
+  // const { setUserDetails } = useContext(UserDetailContext);
+  // const { mutate } = useMutation({
+  //   mutationKey: [user?.email],
+  //   mutationFn: (token) => {createUser(user?.email, token)
+  //     console.log(token)},
+  // });
  
   
-  useEffect(() => {
-    const getTokenAndRegsiter = async () => {
+  // useEffect(() => {
+  //   const getTokenAndRegsiter = async () => {
 
-      const res = await getAccessTokenWithPopup({
-        authorizationParams: {
-          audience: "http://localhost:9000",
-          scope: "openid profile email",
-        },
-      });
-      localStorage.setItem("access_token", res);
-      setUserDetails((prev) => ({ ...prev, token: res }));
+  //     const res = await getAccessTokenWithPopup({
+  //       authorizationParams: {
+  //         audience: "http://localhost:9000",
+  //         scope: "openid profile email",
+  //       },
+  //     });
+  //     localStorage.setItem("access_token", res);
+  //     setUserDetails((prev) => ({ ...prev, token: res }));
       
-      mutate(res)
+  //     mutate(res)
       
-    };
+  //   };
 
-       isAuthenticated && getTokenAndRegsiter();
+  //      isAuthenticated && getTokenAndRegsiter();
        
-  }, [isAuthenticated]);
+  // }, [isAuthenticated]);
   return (
     <>
     <div>

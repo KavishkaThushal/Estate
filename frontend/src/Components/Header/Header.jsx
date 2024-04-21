@@ -5,21 +5,23 @@ import OutsideClickHandler from 'react-outside-click-handler'
 import { NavLink } from 'react-router-dom'
 import {useAuth0} from "@auth0/auth0-react"
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
+import useUserDetails from '../../hooks/useUserDetails'
 const Header = () => {
-  const[menuOpened,setMenuOpened] = useState(false)
-  const {loginWithRedirect,isAuthenticated,user,logout}=useAuth0()
-
-
-  const getMenuStyles = (menuOpened) => {
-    if(document.documentElement.clientWidth <= 800)
-    {
-      return { display:!menuOpened && 'none'}
-    }
-  }
-
-  
-
-console.log(isAuthenticated)
+  // const[menuOpened,setMenuOpened] = useState(false)
+  const { data, isError, isLoading } = useUserDetails();
+  const token=localStorage.getItem('token')
+  console.log(data)
+const renderheader=()=>{
+   if(token){
+    return(
+      <>
+       <div>
+         `Hi ${data}`
+       </div>
+      </>
+    )
+   }
+}
 
   return (
     <section className='h-wrapper'>
@@ -27,21 +29,21 @@ console.log(isAuthenticated)
 
            <img className="h-logo" src="./logo.png" alt="logo"  />
            
-           <OutsideClickHandler onOutsideClick={()=> {setMenuOpened(false)}}>
+           {/* <OutsideClickHandler onOutsideClick={()=> {setMenuOpened(false)}}> */}
 
-           <div className="flexCenter h-menu show" style={getMenuStyles(menuOpened)}>
+           <div className="flexCenter h-menu show" >
 
             <NavLink to='/properties'>Properties</NavLink> 
             <a href="">Contact us</a>
             
-            {
+            {/* {
               isAuthenticated===true?
               (<ProfileMenu user={user} logout={logout}/>):(<button className='button' onClick={loginWithRedirect}>
             <a href="">Login</a>
-            </button>)}
+            </button>)} */}
             
            </div>
-           </OutsideClickHandler>
+           {/* </OutsideClickHandler> */}
 
            <div className="menu-icon" onClick={()=> setMenuOpened((prev)=>!prev)}>
             <BiMenuAltRight size={30}/>

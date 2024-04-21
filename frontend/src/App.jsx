@@ -11,13 +11,18 @@ import "react-toastify/dist/ReactToastify.css"
 import Property from "./pages/Property/Property";
 import { MantineProvider } from '@mantine/core';
 import UserDetailContext from "./Context/Context";
+import Login from "./pages/LogIn/Login";
+import Register from "./pages/Register/Register";
+import CreateRecidency from "./pages/CreateRecidency/CreateRecidency";
 
 
 function App() {
   const queryClient=new QueryClient()
   const [userDetails,setUserDetails]=useState({
     bookings:[],
-    email:null
+    email:null,
+    user:null,
+    
   })
 
   return (
@@ -30,6 +35,9 @@ function App() {
      <Routes>
       <Route element={<Layout/>}>
       <Route path="/" element={<Website/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
+      <Route path="/createrecidency" element={<CreateRecidency/>}/>
       <Route path="/properties" >
         <Route index element={<Properties/>}/>
         <Route path=":propertyId" element={<Property/>}/>

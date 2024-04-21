@@ -1,0 +1,164 @@
+.property-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   width: 950px;
+    margin: 0 auto;
+    padding: rem;
+    gap: 1.3rem;
+}
+.property-container{
+    gap: 2rem;
+    position: relative;
+}
+
+.property-container .like{
+    position: absolute;
+    top: 3rem;right: 3rem;
+    cursor: pointer;
+}
+
+
+.property-container>img{
+    align-self: center;
+    max-height: 24rem;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.property-details{
+    width: 100%;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.property-details>div{
+    flex: 1;
+    gap: 1.5rem;
+}
+
+.property-details .left .head{
+    justify-content: space-between;
+    width: 100%;
+}
+
+.facilities{
+    gap: 1rem;
+    font-size: 0.9rem;
+    padding: 1rem;
+    margin: 0 auto;
+    
+}
+
+.facility{
+    gap: 0.5rem;
+}
+
+.property-details .button{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.property-details .button:hover{
+    transform: scale(1.05);
+}
+
+.head-containers>input{
+    font-size: .8rem;
+    font-weight: 500;
+    height: 30px;
+    width: 300px;
+    padding: 15px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+    font-weight: 500;
+    gap: .4rem;
+}
+.head-containers>label{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.facility>input{
+    font-size: .8rem;
+    font-weight: 500;
+    height: 30px;
+    width: 55px;
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+    font-weight: 500;
+}
+.description-container{
+    display: flex;
+    gap: .4rem;
+    flex-direction: column;
+    
+    margin: 0 auto;
+    width: 100%;
+}
+.description-container>label{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.description-container>textarea {
+    font-size: .8rem;
+    font-weight: 500;
+    width: 100%;
+    align-items: center;
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+    font-weight: 500;
+    
+}
+.address-form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .4rem;
+}
+
+
+.address-container>label{
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.address-container>input{
+    font-size: .8rem;
+    font-weight: 500;
+    height: 30px;
+    
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+    font-weight: 500;
+}
+.address{
+    width: 500px;
+}
+@media (max-width: 700px) {
+    .property-container>div{
+        flex-direction: column;
+    }
+    .head{
+        flex-direction: column;
+    }
+    .facilities{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .property-details>div{
+        width: 100%;
+    }
+}
