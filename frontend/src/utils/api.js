@@ -1,5 +1,6 @@
 import axios from 'axios'
 import dayjs from 'dayjs'
+
 import {toast} from 'react-toastify'
 
 export const api=axios.create({
@@ -28,8 +29,16 @@ export const createUser = async (name,email,password,confirmPassword) => {
         {name,email,password,confirmPassword},
         
       );
+      const user = {
+        token: response.data.token,
+        email: email,
+        name:name
+      };
+      const userData=JSON.stringify(user)
+        localStorage.setItem('userData',userData)
+       
+    
       
-      localStorage.setItem('token',response.data.token)
     } catch (error) {
     
       toast.error("Something went wrong, Please try again");
@@ -37,6 +46,31 @@ export const createUser = async (name,email,password,confirmPassword) => {
      
     }
   };
+
+  export const login=async(email,password)=>{
+
+    try {
+      const response= await api.post(
+        "/login",
+        {email,password},
+        
+      );
+      if(response.data.success===true){
+        
+        const user = {
+          token: response.data.token,
+          email: email,
+          name:response.data.data.name
+        };
+        const userData=JSON.stringify(user)
+          localStorage.setItem('userData',userData)
+      }
+      
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      console.log(error)
+    }
+  }
 
 
   export const bookVisit = async (email,id,date) => {

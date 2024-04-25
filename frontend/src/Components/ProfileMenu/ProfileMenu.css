@@ -1,0 +1,7 @@
+.menu-btn{
+    max-width: max-content;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    color: var(--secondary);
+}

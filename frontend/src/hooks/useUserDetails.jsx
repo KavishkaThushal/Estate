@@ -7,7 +7,7 @@ import UserDetailContext from "../Context/Context"
 
 const useUserDetails = () => {
   const { userDetails:{email}, setUserDetails } = useContext(UserDetailContext);
-
+  // const queryRef = useRef();
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["userData", email],
@@ -19,6 +19,11 @@ const useUserDetails = () => {
   });
 
 
+//   queryRef.current=refetch
+
+//   useEffect(() => {
+//    queryRef.current && queryRef.current();
+//  },[]);
 
 
 

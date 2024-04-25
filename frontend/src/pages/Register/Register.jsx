@@ -6,12 +6,16 @@ import { useMutation } from 'react-query';
 import { createUser } from '../../utils/api';
 import { toast } from 'react-toastify';
 import UserDetailContext from '../../Context/Context';
+import { useNavigate } from 'react-router-dom';
+
+
 function Register() {
   const [name,setName]=useState('')
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const [confirmPassword,setConfirmPassword]=useState('')
-
+  const navigate=useNavigate()
+ 
   const {setUserDetails,
   } = useContext(UserDetailContext);
 
@@ -24,7 +28,10 @@ function Register() {
         email: email,
       }));
        
+
       toast.success("Register successfully", { position: "bottom-right" });
+     navigate(-1)
+    
     },
   });
   return (
