@@ -142,3 +142,36 @@ export const createUser = async (name,email,password,confirmPassword) => {
       throw error;
     }
   }
+
+  export const createrecidencies=async(formData)=>{
+      
+  
+    try {
+      const response = await api.post('/createrecidency', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log(response.data);
+      return response.data
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      console.log(error)
+      throw error;
+    }
+
+  }
+
+  export const imgDisplay=async(title)=>{
+    try {
+      
+      const response=await api.post("/getrecidencyimg",{title})
+      console.log(response.data)
+      return response.data
+     
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      console.log(error)
+      throw error;
+    }
+  }

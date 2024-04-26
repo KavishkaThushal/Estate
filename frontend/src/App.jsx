@@ -14,6 +14,7 @@ import UserDetailContext from "./Context/Context";
 import Login from "./pages/LogIn/Login";
 import Register from "./pages/Register/Register";
 import CreateRecidency from "./pages/CreateRecidency/CreateRecidency";
+import MyRecidencies from "./pages/MyRecidencies/MyRecidencies";
 
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
       <Route element={<Layout/>}>
       <Route path="/" element={<Website/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/myrecidencies" element={<MyRecidencies/>}/>
+      
       <Route path="/register" element={<Register/>}/>
       <Route path="/createrecidency" element={<CreateRecidency/>}/>
       <Route path="/properties" >

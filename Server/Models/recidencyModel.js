@@ -38,7 +38,7 @@ const newSchema=mongoose.Schema({
         bathrooms:{
             type:Number,
         },
-        beds:{
+        parkings:{
             type:Number,
         },
         

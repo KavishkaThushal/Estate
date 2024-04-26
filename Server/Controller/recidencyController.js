@@ -5,8 +5,13 @@ import User from '../Models/userModel.js'
 export const createrecidency=async (req,res)=>{
 
     try {
-        const {title,description,price,address,country,city,facilities,userEmail}=req.body
-        const newRecidency=new Recidency({title,description,price,address,country,city,facilities,image:req.file.originalname,userEmail})
+        const {title,description,price,address,country,city,bathrooms,parkings,rooms,userEmail}=req.body
+       
+        const newRecidency=new Recidency({title,description,price,address,country,city,facilities:[{
+            rooms: parseInt(rooms),
+            bathrooms: parseInt(bathrooms),
+            parkings: parseInt(parkings), 
+        }],image:req.file.originalname,userEmail})
          const response=await newRecidency.save()
          
          if(response){
@@ -88,6 +93,16 @@ export const getProperty=async(req,res)=>{
     try {
         const {id}=req.body
         const response=await Recidency.findOne({_id:id})
+        if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
+
+    } catch (error) {
+        return res.status(401).send({success:false,message:"Server error."})   
+    }
+}
+export const getImg=async(req,res)=>{
+    try {
+        const {title}=req.body
+        const response=await Recidency.findOne({title})
         if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
 
     } catch (error) {

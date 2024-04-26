@@ -22,6 +22,9 @@ const ProfileMenu = ({name}) => {
             <Menu.Item onClick={()=> navigate("./bookings", {replace: true})}>
                 Bookings
             </Menu.Item>
+            <Menu.Item onClick={()=> navigate("./createrecidency", {replace: true})}>
+                Create your Recidency
+            </Menu.Item>
 
             <Menu.Item onClick={()=>{
                 localStorage.clear();

@@ -8,6 +8,14 @@
     padding: rem;
     gap: 1.3rem;
 }
+.small-img{
+    
+    height: 50px;
+    width: 100px;
+    border-radius: 1rem;
+    object-fit: cover;
+   
+}
 .property-container{
     gap: 2rem;
     position: relative;
@@ -19,7 +27,38 @@
     cursor: pointer;
 }
 
-
+.img-container{
+    align-self: center;
+    height: 24rem;
+    width: 100%;
+    border-radius: 1rem;
+    border:1px dotted black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   
+}
+.img-label{
+    cursor: pointer;
+    
+    height: 24rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-img{
+    
+    max-height: 24rem;
+    width: 100%;
+    
+    border-radius: 1rem;
+    object-fit: cover;
+}
+.default-img{
+    align-self: center;
+}
 .property-container>img{
     align-self: center;
     max-height: 24rem;
@@ -27,6 +66,7 @@
     border-radius: 1rem;
     object-fit: cover;
 }
+
 
 .property-details{
     width: 100%;

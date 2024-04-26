@@ -1,5 +1,5 @@
 import express from "express"
-import { booking, createrecidency, getAll, getAllBooking, getProperty, removeBooking } from "../Controller/recidencyController.js"
+import { booking, createrecidency, getAll, getAllBooking, getImg, getProperty, removeBooking } from "../Controller/recidencyController.js"
 import multer from 'multer';
 const router=express.Router()
 
@@ -21,6 +21,7 @@ router.post('/removebooking/:id',removeBooking)
 router.post('/getallbookings',getAllBooking)
 router.get('/getall',getAll)
 router.post('/getProperty',getProperty)
+router.post('/getrecidencyimg',getImg)
 
 
 export {router as residencyRouter}
