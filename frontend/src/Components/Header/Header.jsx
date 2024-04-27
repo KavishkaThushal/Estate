@@ -44,7 +44,8 @@ const renderheader=()=>{
            <div className="flexCenter h-menu show" >
            
             <NavLink to='/properties'>Properties</NavLink> 
-            <a href="">Contact us</a>
+            <NavLink to='/contact'>Contact us</NavLink> 
+            
             {renderheader()}
             
             {/* {

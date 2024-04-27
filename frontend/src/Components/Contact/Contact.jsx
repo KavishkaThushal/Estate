@@ -10,7 +10,7 @@ const Contact = () => {
         <div className="paddings innerWidth flexCenter c-contact">
        {/*left*/}
         <div className="flexColStart c-left">
-            <span className='orangeText'>Our Cobtacts</span>
+            <span className='orangeText'>Our Contacts</span>
             <span className='primaryText'>Easy to Contact</span>
             <span className='secondaryText'>We always ready to help by providing the best services</span>
          <div className="flexColStart contactModes">

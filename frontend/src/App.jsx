@@ -17,6 +17,7 @@ import CreateRecidency from "./pages/CreateRecidency/CreateRecidency";
 import MyRecidencies from "./pages/MyRecidencies/MyRecidencies";
 import OwnProperty from "./pages/Property/OwnProperty";
 import Bookings from "./pages/Bookings/Bookings";
+import Contact from "./components/Contact/Contact";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       <Route element={<Layout/>}>
       <Route path="/" element={<Website/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/contact" element={<Contact/>}/>
       <Route path="/bookings" element={<Bookings/>}/>
       <Route path="/myrecidencies" >
       <Route index element={<MyRecidencies/>}/>

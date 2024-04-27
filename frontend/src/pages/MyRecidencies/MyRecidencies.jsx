@@ -10,11 +10,11 @@ function MyRecidencies() {
 
   const userData = JSON.parse(userDataJSON);
   const email = userData.email;
-console.log(email)
+
   const { data, isLoading, isError } = useQuery("myresd", () =>
   ownRecidencies(email)
 );
- console.log(data?.response[0].image)
+ 
    
  if (isError) {
   return (

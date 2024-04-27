@@ -26,6 +26,28 @@
     top: 3rem;right: 3rem;
     cursor: pointer;
 }
+.create-Btn{
+    width: 30rem;
+    height: 36px;
+    background: var(--blue-gradient);
+    outline: none;
+    border: none;
+    padding: 1rem .6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .4rem;
+    color: white;
+    font-weight: 500;
+    transition: all 300ms ease-in;
+    
+}
+.create-Btn:hover{
+    
+        cursor: pointer;
+        transform: scale(1.1);
+      
+}
 
 .img-container{
     align-self: center;
@@ -72,6 +94,7 @@
     width: 100%;
     gap: 2rem;
     justify-content: space-between;
+    
 }
 
 .property-details>div{

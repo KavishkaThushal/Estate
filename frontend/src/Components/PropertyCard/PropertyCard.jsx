@@ -6,10 +6,11 @@ import {useNavigate} from 'react-router-dom'
 function PropertyCard({card}) {
     
   const navigate=useNavigate()
+  const imgPath=`http://localhost:7000/uploads/${card?.image}`
   return (
     <div className=" r-card small" onClick={()=>(navigate(`../properties/${card._id}`))}>
         
-    <img src={card.image} alt='home'  />
+    <img src={imgPath} alt='home'  />
    
     <span className='secondaryText r-price small '>
         <span style={{ color: "orange" }}>$</span>

@@ -44,15 +44,7 @@ const CreateRecidency = () => {
       const email = userData.email;
 
      const [file, setFile] = useState(null);
-     const config2= {
-      borderRadius: '8px',
-      language: 'en',
-      width: '55rem',
-      height: '10rem',
-      objectFit: 'cover',
-      compressInitial: null,
-    };
-
+     
     const initialImage = '';
  
     // const handleImageUpload = async (dataUri) => {
@@ -90,7 +82,7 @@ const CreateRecidency = () => {
         
            toast.success("Create successfully", { position: "bottom-right" });
            
-         navigate(-1)
+           navigate(-1)
         
         },
       });
@@ -105,7 +97,7 @@ const CreateRecidency = () => {
       return(
         <>
         <div>
-          <button style={{width:'100px',height:'30px'}} onClick={uploadImg}>upload me</button>
+          <button className="create-Btn" onClick={uploadImg}>upload me</button>
         </div>
         </>
       )
@@ -143,7 +135,7 @@ const handleFileChange = (e) => {
         
         
           
-         {file? renderUplaodBtn():''}
+         
         <div className="flexCenter property-details">
           {/* left */}
           <div className="flexColStart left">
@@ -211,15 +203,17 @@ const handleFileChange = (e) => {
               <input type="text" onChange={(e)=>(setCountry(e.target.value))}/>
               </div>
             </div>
-
+            
    
 
           </div>
 
           
-         
+          
         </div>
+        
       </div>
+      {file? renderUplaodBtn():''}
     </div>
   );
 };
