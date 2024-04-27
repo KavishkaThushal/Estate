@@ -36,7 +36,7 @@ export const createrecidency=async (req,res)=>{
 }
 
 export const booking=async (req,res)=>{
-    const {id,email,date}=req.body
+    const {id,email,date,title,price,image}=req.body
      
      
     try {
@@ -46,7 +46,10 @@ export const booking=async (req,res)=>{
             $push: {
                 bookvisit: {
                     recidencyId:id,
-                    date:date,  
+                    date:date,
+                    title:title,
+                    price:price,
+                    image:image  
                 }
             }
         })
@@ -115,6 +118,16 @@ export const getImg=async(req,res)=>{
     try {
         const {title}=req.body
         const response=await Recidency.findOne({title})
+        if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
+
+    } catch (error) {
+        return res.status(401).send({success:false,message:"Server error."})   
+    }
+}
+export const getDetails=async(req,res)=>{
+    try {
+        const {id}=req.body
+        const response=await Recidency.findOne({_id:id})
         if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
 
     } catch (error) {

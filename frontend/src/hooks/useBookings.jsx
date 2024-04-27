@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useRef } from "react";
-import UserDetailContext from "../context/UserDetailContext";
+import UserDetailContext from  "../Context/Context";
 import { useQuery } from "react-query";
 
 import { getAllBookings } from "../utils/api";
 
 const useBookings = () => {
-  const { userDetails:{email}, setUserDetails } = useContext(UserDetailContext);
+  const userDataJSON = localStorage.getItem('userData');
+
+  const userData = JSON.parse(userDataJSON);
+  const email = userData.email;
+ 
+  const { userDetails, setUserDetails } = useContext(UserDetailContext);
   const queryRef = useRef();
 
   const { data, isLoading, isError, refetch } = useQuery({
@@ -20,7 +25,7 @@ const useBookings = () => {
 
    useEffect(() => {
     queryRef.current && queryRef.current();
-  }, []);
+  }, [email]);
 
 
 

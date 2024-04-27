@@ -9,7 +9,7 @@ import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 
 import dayjs from "dayjs";
-const BookingModal = ({ opened, setOpened, email, propertyId }) => {
+const BookingModal = ({ opened, setOpened, email, propertyId,title,price,image }) => {
   const [value, setValue] = useState(null);
   const {
     userDetails,
@@ -34,7 +34,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
   };
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => bookVisit(email, propertyId,value ),
+    mutationFn: () => bookVisit(email, propertyId,value,title,price,image ),
     onSuccess: () => handleBookingSuccess(),
     onError: ({ response }) => toast.error(response.data.message),
     onSettled: () => setOpened(false),

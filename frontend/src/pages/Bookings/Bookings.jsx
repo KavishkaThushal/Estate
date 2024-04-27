@@ -1,18 +1,27 @@
 import React, { useContext, useState } from "react";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import useProperties from "../../hooks/useProperties";
+
 import { PuffLoader } from "react-spinners";
-import PropertyCard from "../../components/PropertyCard/PropertyCard";
-import "../Properties/Properties.css";
-import UserDetailContext from "../../context/UserDetailContext";
 
+
+
+import useBookings from "../../hooks/useBookings";
+import OwnPropertyCard from '../../Components/OwnPropertyCard/OwnPropertyCard'
+import "./Booking.css"
+import { useQuery } from "react-query";
+import { getRecDetails, getpro } from "../../utils/api";
+import BookingShow from "../../Components/BookingShow/BookingShow";
 const Bookings = () => {
-  const { data, isError, isLoading } = useProperties();
+  const { data, isError, isLoading } = useBookings();
   const [filter, setFilter] = useState("");
-  const {
-    userDetails: { bookings },
-  } = useContext(UserDetailContext);
+        
+ console.log(data?.bookings)
+    
 
+   
+  // const { prodata, proisError, proisLoading } = useQuery(["propertid",id],()=>{
+  //    getpro(id)
+  // });
+   
   if (isError) {
     return (
       <div className="wrapper">
@@ -35,32 +44,40 @@ const Bookings = () => {
     );
   }
   return (
-    <div className="wrapper">
-      <div className="flexColCenter paddings innerWidth properties-container">
-        <SearchBar filter={filter} setFilter={setFilter} />
+    <div className="book-properties-wrapper">
+    <div className='book-title primaryText'>Booking Recidencies
+     </div> 
+ <div className="  book-properties-container">
+    
 
-        <div className="paddings flexCenter properties">
-          {
-            // data.map((card, i)=> (<PropertyCard card={card} key={i}/>))
 
-            data
-              .filter((property) =>
-                bookings.map((booking) => booking.id).includes(property.id)
-              )
+   <div className=" book-properties">
 
-              .filter(
-                (property) =>
-                  property.title.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.city.toLowerCase().includes(filter.toLowerCase()) ||
-                  property.country.toLowerCase().includes(filter.toLowerCase())
-              )
-              .map((card, i) => (
-                <PropertyCard card={card} key={i} />
-              ))
-          }
+       
+       
+   {data?.bookings.map((book, i) => (
+    <div key={i} className="booking-container">
+        <div className="booking-img-container">
+            <img src={book.image} alt="residency image" />
         </div>
-      </div>
+        <div className="booking-left">
+            <span className="booking-title">{book.title}</span>
+            <div className="booking-content">
+                <span>price: Rs.{book.price}</span>
+                <span>date: {book.date}</span>
+            </div>
+        </div>
     </div>
+))}
+
+   
+        
+
+     
+
+   </div>
+ </div>
+</div>
   );
 };
 

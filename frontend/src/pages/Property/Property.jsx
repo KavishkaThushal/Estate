@@ -75,7 +75,7 @@ const Property = () => {
       </div>
     );
   }
-  // const imgPath=`http://localhost:7000/uploads/${data.response?.image}`
+   const imgPath=`http://localhost:7000/uploads/${data.response?.image}`
   return (
     <div className="property-wrapper">
       <div className="flexColStart paddings innerWidth property-container">
@@ -83,7 +83,7 @@ const Property = () => {
         
 
         {/* image */}
-        <img src={ data.response?.image} alt="home image" />
+        <img src={ imgPath} alt="home image" />
 
         <div className="flexCenter property-details">
           {/* left */}
@@ -169,6 +169,9 @@ recidencyId).includes(id) ? (
               setOpened={setModalOpened}
               propertyId={id}
               email={email}
+              title={data.response?.title}
+              price={data.response?.price}
+              image={data.response?.image}
             />
           </div>
 

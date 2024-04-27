@@ -73,7 +73,7 @@ export const createUser = async (name,email,password,confirmPassword) => {
   }
 
 
-  export const bookVisit = async (email,id,date) => {
+  export const bookVisit = async (email,id,date,title,price,image) => {
     
 
     try {
@@ -82,7 +82,11 @@ export const createUser = async (name,email,password,confirmPassword) => {
         {
           id,
           email,
-          date: dayjs(date).format("DD/MM/YYYY")
+          date: dayjs(date).format("DD/MM/YYYY"),
+          title,
+          price,
+          image
+
         },
         
       );
@@ -137,6 +141,19 @@ export const createUser = async (name,email,password,confirmPassword) => {
   export const getUserDetails=async(email)=>{
     try {
       const response=await api.post("/userdetails",{email})
+      
+      return response.data
+      
+    } catch (error) {
+      toast.error("Something went wrong, Please try again");
+      console.log(error)
+      throw error;
+    }
+  }
+
+  export const getRecDetails=async(id)=>{
+    try {
+      const response=await api.post("/getrecdetails",{id})
       
       return response.data
       

@@ -25,6 +25,15 @@ const newSchema=mongoose.Schema({
           },
           date:{
             type:Date
+          },
+          title:{
+            type:String
+          },
+          price:{
+            type:Number
+          },
+          image:{
+            type:String
           }
 
     }],

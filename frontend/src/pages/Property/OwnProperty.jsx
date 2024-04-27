@@ -97,7 +97,7 @@ console.log(data)
               {/* bathrooms */}
               <div className="flexStart facility">
                 <FaShower size={20} color="#1F3E72" />
-                <span>{data.response?.facilities[0].bathrooms} Bathrooms</span>
+                <span>{data?.response?.facilities[0].bathrooms} Bathrooms</span>
               </div>
 
               {/* parkings */}
