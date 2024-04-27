@@ -74,15 +74,19 @@ export const createUser = async (name,email,password,confirmPassword) => {
 
 
   export const bookVisit = async (email,id,date) => {
+    
+
     try {
-      await api.post(
-        `/booking/${id}`,
+      const response=await api.post(
+        "/booking",
         {
+          id,
           email,
           date: dayjs(date).format("DD/MM/YYYY")
         },
         
       );
+        
     } catch (error) {
       toast.error("Something went wrong, Please try again");
       throw error;
@@ -152,7 +156,7 @@ export const createUser = async (name,email,password,confirmPassword) => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log(response.data);
+    
       return response.data
     } catch (error) {
       toast.error("Something went wrong, Please try again");
@@ -162,10 +166,10 @@ export const createUser = async (name,email,password,confirmPassword) => {
 
   }
 
-  export const imgDisplay=async(title)=>{
+  export const ownRecidencies=async(email)=>{
     try {
       
-      const response=await api.post("/getrecidencyimg",{title})
+      const response=await api.post("/getallownrecidencies",{email})
       console.log(response.data)
       return response.data
      

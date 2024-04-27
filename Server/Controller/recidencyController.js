@@ -36,9 +36,12 @@ export const createrecidency=async (req,res)=>{
 }
 
 export const booking=async (req,res)=>{
+    const {id,email,date}=req.body
+     
+     
     try {
-        const {email,date}=req.body
-        const {id}=req.params
+        
+
         const response=await User.findOneAndUpdate({email},{
             $push: {
                 bookvisit: {
@@ -73,6 +76,15 @@ export const removeBooking=async (req,res)=>{
 export const getAll=async (req,res)=>{
     try {
         const response=await Recidency.find()
+        if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
+    } catch (error) {
+        return res.status(401).send({success:false,message:"Server error."})   
+    }
+}
+export const getAllOwnRecidencies=async (req,res)=>{
+    try {
+        const {email}=req.body
+        const response=await Recidency.find({userEmail:email})
         if(response)return res.status(201).send({success:true,message:"successfull.",response}) 
     } catch (error) {
         return res.status(401).send({success:false,message:"Server error."})   

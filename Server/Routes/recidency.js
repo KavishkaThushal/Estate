@@ -1,5 +1,5 @@
 import express from "express"
-import { booking, createrecidency, getAll, getAllBooking, getImg, getProperty, removeBooking } from "../Controller/recidencyController.js"
+import { booking, createrecidency, getAll, getAllBooking, getAllOwnRecidencies, getImg, getProperty, removeBooking } from "../Controller/recidencyController.js"
 import multer from 'multer';
 const router=express.Router()
 
@@ -16,10 +16,11 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage });
 
 router.post('/createrecidency',upload.single('image'),createrecidency)
-router.post('/booking/:id',booking)
+router.post('/booking',booking)
 router.post('/removebooking/:id',removeBooking)
 router.post('/getallbookings',getAllBooking)
 router.get('/getall',getAll)
+router.post('/getallownrecidencies',getAllOwnRecidencies)
 router.post('/getProperty',getProperty)
 router.post('/getrecidencyimg',getImg)
 

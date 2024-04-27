@@ -15,6 +15,7 @@ import Login from "./pages/LogIn/Login";
 import Register from "./pages/Register/Register";
 import CreateRecidency from "./pages/CreateRecidency/CreateRecidency";
 import MyRecidencies from "./pages/MyRecidencies/MyRecidencies";
+import OwnProperty from "./pages/Property/OwnProperty";
 
 
 function App() {
@@ -37,13 +38,17 @@ function App() {
       <Route element={<Layout/>}>
       <Route path="/" element={<Website/>}/>
       <Route path="/login" element={<Login/>}/>
-      <Route path="/myrecidencies" element={<MyRecidencies/>}/>
+      <Route path="/myrecidencies" >
+      <Route index element={<MyRecidencies/>}/>
+      <Route path=":propertyownId" element={<OwnProperty/>}/>
+        </Route>
       
       <Route path="/register" element={<Register/>}/>
       <Route path="/createrecidency" element={<CreateRecidency/>}/>
       <Route path="/properties" >
         <Route index element={<Properties/>}/>
         <Route path=":propertyId" element={<Property/>}/>
+        
       </Route>
       </Route>
      </Routes>

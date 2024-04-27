@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { useLocation } from "react-router-dom";
-import { bookVisit, createrecidencies, getpro, imgDisplay, } from "../../utils/api";
+import { useLocation, useNavigate } from "react-router-dom";
+import { bookVisit, createrecidencies, getpro,  } from "../../utils/api";
 import { PuffLoader } from "react-spinners";
 import { AiFillHeart } from "react-icons/ai";
 import "./CreateRecidency.css";
@@ -20,11 +20,11 @@ import { Button } from "@mantine/core";
 import { toast } from "react-toastify";
 import UserDetailContext from "../../Context/Context";
 import { useEffect } from "react";
-import useImgDisplay from "../../hooks/useImgDispplay";
+
 import defaultImg from '../../../dist/camera.png'
 const CreateRecidency = () => {
   
-
+     const navigate=useNavigate()
   
      const [title,setTitle]=useState('')
      const [value,setValue]=useState(null)
@@ -72,7 +72,7 @@ const CreateRecidency = () => {
       const formData = new FormData();
       formData.append('image', file);
       formData.append('title', title);
-      formData.append('value', value);
+      formData.append('price', value);
       formData.append('bathrooms', bathrooms);
       formData.append('parkings', parking);
       formData.append('rooms', rooms);
@@ -87,8 +87,9 @@ const CreateRecidency = () => {
         onSuccess: (data) => {
                       
         setPath(`http://localhost:7000/uploads/${data?.imageName}`)
-        console.log(data)
-          toast.success("upload successfully", { position: "bottom-right" });
+        
+           toast.success("Create successfully", { position: "bottom-right" });
+           
          navigate(-1)
         
         },

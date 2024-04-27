@@ -18,29 +18,25 @@ import { Button } from "@mantine/core";
 import { toast } from "react-toastify";
 import UserDetailContext from "../../Context/Context";
 
-const Property = () => {
+const OwnProperty = () => {
   const { pathname } = useLocation();
  
    const id = pathname.split("/").slice(-1)[0];
-   const userDataJSON = localStorage.getItem('userData');
-
-   const userData = JSON.parse(userDataJSON);
-   const email = userData.email;
   
-
+  
 
    const { data, isLoading, isError } = useQuery(["resd", id], () =>
    getpro(id)
  );
  
-
+console.log(data)
 
   const [modalOpened, setModalOpened] = useState(false);
   //const { validateLogin } = useAuthCheck();
  // const { user } = useAuth0();
 
   const {
-    userDetails: {bookings},
+    userDetails: {bookings,email },
     setUserDetails,
   } = useContext(UserDetailContext);
   console.log(data?.response)
@@ -75,7 +71,7 @@ const Property = () => {
       </div>
     );
   }
-  // const imgPath=`http://localhost:7000/uploads/${data.response?.image}`
+  const imgPath=`http://localhost:7000/uploads/${data.response?.image}`
   return (
     <div className="property-wrapper">
       <div className="flexColStart paddings innerWidth property-container">
@@ -83,7 +79,7 @@ const Property = () => {
         
 
         {/* image */}
-        <img src={ data.response?.image} alt="home image" />
+        <img src={imgPath } alt="home image" />
 
         <div className="flexCenter property-details">
           {/* left */}
@@ -186,4 +182,4 @@ recidencyId).includes(id) ? (
   );
 };
 
-export default Property;
+export default OwnProperty;
