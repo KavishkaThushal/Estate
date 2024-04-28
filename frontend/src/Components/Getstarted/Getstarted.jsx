@@ -6,7 +6,8 @@ const Getstarted = () => {
  <section className="g-wrapper">
     <div className="paddings innerWidth g-container">
         <div className="flexColCenter inner-container">
-            <span className='primaryText'>Get Started with Homyz</span>
+           
+            <span className='primaryText'>Get Started with Dream Home</span>
             <span className='secondaryText'>Subcribe and find super attractive price quotes from us
                 <br/>
                 Find your residence soon

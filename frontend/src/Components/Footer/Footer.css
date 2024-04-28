@@ -1,16 +1,26 @@
 .f-container{
     justify-content: space-between;
+    background-color: #172640;
 
 }
 
 .f-left{
-    gap: 1rem;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.f-left>img{
+    width: 150px;
+    height: 100px;
+    
+}
 .f-menu{
     gap: 1.5rem;
     margin-top: 1.5rem;
     font-weight: 500;
+    color: grey;
 }
 
 @media (max-width:768px) {

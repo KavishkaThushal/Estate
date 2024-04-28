@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.css'
-
+import logoImg from "../../../dist/logo.png"
 const Footer = () => {
   return (
     <section className="f-wrapper">
@@ -8,7 +8,7 @@ const Footer = () => {
             {/*left*/}
 
             <div className="flexColStart f-left">
-                <img src="./logo.png" alt="" width={120} />
+                <img src={logoImg} alt="" width={120} />
 
                 <span className="secondaryText">
                     Our Vision is to make all people <br/>
@@ -19,7 +19,7 @@ const Footer = () => {
             {/*right*/}
 
             <div className="flexColStart f-right">
-                <span className='primaryText'> Information</span>
+                <span className='primaryText' style={{color:'#1E79B5'}}> Information</span>
                 <span className='secondaryText'>No 33, Hamparawa, Diyathalawa Road, Bandarawela </span>
          
                 <div className="flexCenter f-menu">

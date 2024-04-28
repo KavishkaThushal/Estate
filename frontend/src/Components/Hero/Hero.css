@@ -5,6 +5,16 @@
     background-color:rgba(18, 60, 150, 0.3);
     
 }
+.hero-wrapper::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity by changing the alpha value (0.5 for 50% opacity) */
+    border-radius: 10px;
+}
 
 
 .hero-video{
@@ -18,13 +28,14 @@
 }
 .hero-container{
      justify-content: space-around;
-     align-items: flex-end;
+     align-items: center;
+     height: 73vh;
      
 
 }
 /*left*/
 .hero-left{
-    gap: 2rem;
+    gap: 1.3rem;
     left: 0;
     position: relative;
     

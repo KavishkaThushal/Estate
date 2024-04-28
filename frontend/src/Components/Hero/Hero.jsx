@@ -32,7 +32,7 @@ const Hero = () => {
                     Easy Way To Reach Your Dream Home. 
                   </span>
                 </div>
-                  <SearchBar/>
+                  
   
                   <div className="flexCenter stat">
                     <div className="flexColCenter stats">
