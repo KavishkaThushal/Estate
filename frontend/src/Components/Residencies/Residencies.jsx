@@ -1,8 +1,9 @@
 import React from 'react';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import 'swiper/css';
 import './Residencies.css';
 
-import 'swiper/css';
+
 
 import { slidersettings } from '../../utils/common';
 
@@ -33,15 +34,7 @@ const Residencies = () => {
       )
     }
     
-    const SliderButtons = () => {
-        const swiper = useSwiper();
-        return (
-            <div className=" swiperContainer">
-                <button onClick={()=>swiper.slidePrev()} className='swiperBtn'>&lt;</button>
-                <button onClick={()=>swiper.slideNext()} className='swiperBtn'>&gt;</button>
-            </div>
-        );
-    };
+    
     
 
     return (
@@ -51,17 +44,19 @@ const Residencies = () => {
                 <div className="r-head flexColStart">
                     <span className='orangeText'>Best Choices</span>
                     <span className='primaryText'>Popular Residencies</span>
+
+                    
                 </div>
 
-                <SliderButtons  />
-
-                <Swiper className='s-swiper' slidesPerView={slidersettings.slidesPerView} spaceBetween={slidersettings.spaceBetween} breakpoints={slidersettings.breakpoints}>
                 
-                    {data.response.slice(0,5).map((card, i) => {
+                 
+                <Swiper className='s-swiper' slidesPerView={slidersettings.slidesPerView} spaceBetween={slidersettings.spaceBetween} breakpoints={slidersettings.breakpoints}>
+                <SliderButtons/>
+                    {data.response.slice(0,8).map((card, i) => {
                        return(<SwiperSlide key={i}>
                         <PropertyCard card={card} key={i} />
                      </SwiperSlide>) 
-})}
+})}                  
                 </Swiper>
             </div>
             
@@ -69,6 +64,16 @@ const Residencies = () => {
         
     );
 }
+
+const SliderButtons = () => {
+  const swiper = useSwiper();
+  return (
+      <div className=" swiperContainer">
+          <button onClick={()=>swiper.slidePrev()} className='swiperBtn'>&lt;</button>
+          <button onClick={()=>swiper.slideNext()} className='swiperBtn'>&gt;</button>
+      </div>
+  );
+};
 
 export default Residencies;
 
