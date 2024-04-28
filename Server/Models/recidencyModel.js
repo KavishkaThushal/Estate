@@ -34,12 +34,15 @@ const newSchema=mongoose.Schema({
     facilities:[{
         rooms:{
             type:Number,
+            default:0
         },
         bathrooms:{
             type:Number,
+            default:0
         },
         parkings:{
             type:Number,
+            default:0
         },
         
         

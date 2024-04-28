@@ -84,8 +84,8 @@ const OwnProperty = () => {
           <div className="flexColStart left">
             {/* head */}
             <div className="flexStart head">
-              <span className="primaryText">{data.response?.title}</span>
-              <span className="orangeText" style={{ fontSize: "1.5rem" }}>
+              <span className="primaryText" style={{ fontSize: "1.5rem" }}>{data.response?.title}</span>
+              <span className="orangeText" style={{ fontSize: "1.2rem" }}>
                 $ {data.response?.price}
               </span>
             </div>
