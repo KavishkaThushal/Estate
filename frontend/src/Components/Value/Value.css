@@ -128,5 +128,8 @@ body {
   
   .accordion-content {
     padding: 1em 1.5em;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #235D7C;
   }
   
