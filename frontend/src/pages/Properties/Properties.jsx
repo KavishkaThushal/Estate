@@ -32,24 +32,20 @@ const Properties = () => {
   }
   return (
     <div className="properties-wrapper">
-      <SearchBar className='property-search' />
+      <SearchBar filter={filter} setFilter={setFilter} className='property-search' />
       <div className="  properties-container">
         
 
         <div className=" properties">
           {
-             data?.response.map((card, i)=> (<OwnPropertyCard card={card} key={i}/>))
+             data?.response.filter(
+                  (property) =>
+                     property.title.toLowerCase().includes(filter.toLowerCase()) ||
+                     property.city.toLowerCase().includes(filter.toLowerCase()) ||
+                   property.country.toLowerCase().includes(filter.toLowerCase())
+                 ).map((card, i)=> (<OwnPropertyCard card={card} key={i}/>))
 
-            // data
-            //   .filter(
-            //     (property) =>
-            //       property.title.toLowerCase().includes(filter.toLowerCase()) ||
-            //       property.city.toLowerCase().includes(filter.toLowerCase()) ||
-            //       property.country.toLowerCase().includes(filter.toLowerCase())
-            //   )
-            //   .map((card, i) => (
-            //     <PropertyCard card={card} key={i} />
-            //   ))
+            
           }
         </div>
       </div>

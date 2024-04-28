@@ -5,13 +5,12 @@ import { bookVisit, getpro, } from "../../utils/api";
 import { PuffLoader } from "react-spinners";
 import { AiFillHeart } from "react-icons/ai";
 import "./Property.css";
-
+import { FaBed } from 'react-icons/fa';
 import { FaShower } from "react-icons/fa";
 import { AiTwotoneCar } from "react-icons/ai";
 import { MdLocationPin, MdMeetingRoom } from "react-icons/md";
 import Map from "../../components/Map/Map";
-//import useAuthCheck from "../../hooks/useAuthCheck";
-//import { useAuth0 } from "@auth0/auth0-react";
+
 import BookingModal from "../../components/BookingModal/BookingModal";
 
 import { Button } from "@mantine/core";
@@ -29,17 +28,16 @@ const OwnProperty = () => {
    getpro(id)
  );
  
-console.log(data)
+
 
   const [modalOpened, setModalOpened] = useState(false);
-  //const { validateLogin } = useAuthCheck();
- // const { user } = useAuth0();
+
 
   const {
     userDetails: {bookings,email },
     setUserDetails,
   } = useContext(UserDetailContext);
-  console.log(data?.response)
+
   const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
     mutationFn: () => removeBooking(id, email),
     onSuccess: () => {
@@ -108,7 +106,7 @@ console.log(data)
 
               {/* rooms */}
               <div className="flexStart facility">
-                <MdMeetingRoom size={20} color="#1F3E72" />
+              <FaBed size={20} color="#1F3E72" />
                 <span>{data.response?.facilities[0].bedrooms} Room/s</span>
               </div>
             </div>
