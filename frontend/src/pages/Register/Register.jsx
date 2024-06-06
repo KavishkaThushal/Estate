@@ -5,8 +5,9 @@ import { RiUpload2Line } from 'react-icons/ri';
 import { useMutation } from 'react-query';
 import { createUser } from '../../utils/api';
 import { toast } from 'react-toastify';
-import UserDetailContext from '../../Context/Context';
+
 import { useNavigate } from 'react-router-dom';
+
 
 
 function Register() {
@@ -16,21 +17,17 @@ function Register() {
   const [confirmPassword,setConfirmPassword]=useState('')
   const navigate=useNavigate()
  
-  const {setUserDetails,
-  } = useContext(UserDetailContext);
+ 
 
     
   const { mutate: register, isLoading: loading } = useMutation({
     mutationFn: () => createUser(name,email,password,confirmPassword),
     onSuccess: () => {
-      setUserDetails((prev) => ({
-        ...prev,
-        email: email,
-      }));
+    
        
 
       toast.success("Register successfully", { position: "bottom-right" });
-     navigate(-1)
+     navigate('/')
     
     },
   });

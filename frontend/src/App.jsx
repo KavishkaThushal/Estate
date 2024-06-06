@@ -8,9 +8,9 @@ import Properties from "./pages/Properties/Properties";
 import {QueryClient, QueryClientProvider} from 'react-query'
 import {ToastContainer} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
-import Property from "./pages/Property/Property";
+
 import { MantineProvider } from '@mantine/core';
-import UserDetailContext from "./Context/Context";
+
 import Login from "./pages/LogIn/Login";
 import Register from "./pages/Register/Register";
 import CreateRecidency from "./pages/CreateRecidency/CreateRecidency";
@@ -18,19 +18,19 @@ import MyRecidencies from "./pages/MyRecidencies/MyRecidencies";
 import OwnProperty from "./pages/Property/OwnProperty";
 import Bookings from "./pages/Bookings/Bookings";
 import Contact from "./components/Contact/Contact";
-
+import { StoreProvider } from "./utils/ContextStore";
 
 function App() {
   const queryClient=new QueryClient()
-  const [userDetails,setUserDetails]=useState({
-    bookings:[],
-    email:null,
-    user:null,
+  // const [userDetails,setUserDetails]=useState({
+  //   bookings:[],
+  //   email:null,
+  //   user:null,
     
-  })
+  // })
 
   return (
-    <UserDetailContext.Provider value={{userDetails,setUserDetails}}>
+    <StoreProvider>
     <MantineProvider>
     <QueryClientProvider client={queryClient}>
       
@@ -49,11 +49,8 @@ function App() {
       
       <Route path="/register" element={<Register/>}/>
       <Route path="/createrecidency" element={<CreateRecidency/>}/>
-      <Route path="/properties" >
-        <Route index element={<Properties/>}/>
-        <Route path=":propertyId" element={<Property/>}/>
+      <Route path="/properties" element={<Properties/>}/>
         
-      </Route>
       </Route>
      </Routes>
      </Suspense>
@@ -62,7 +59,7 @@ function App() {
 
    </QueryClientProvider>
    </MantineProvider>
-   </UserDetailContext.Provider>
+   </StoreProvider>
   );
 }
 

@@ -2,35 +2,31 @@ import React, { useContext, useState } from "react";
 import { Modal, Button } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useMutation } from "react-query";
-import UserDetailContext from "../../Context/Context.jsx";
+
 import { bookVisit } from "../../utils/api.js";
 import { toast } from "react-toastify";
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 
 import dayjs from "dayjs";
+import { storeContext } from "../../utils/ContextStore.jsx";
 const BookingModal = ({ opened, setOpened, email, propertyId,title,price,image }) => {
+  
   const [value, setValue] = useState(null);
-  const {
-    userDetails,
-    setUserDetails,
-  } = useContext(UserDetailContext);
+  const {setBookings, 
+  } = useContext(storeContext);
     
   const handleBookingSuccess = () => {
     toast.success("You have booked your visit", {
       position: "bottom-right",
     });
-    setUserDetails((prev) => ({
+    setBookings((prev) => ([
       ...prev,
-      bookings: [
-        ...prev.bookings,
-        {
-          recidencyId: propertyId,
-          date: dayjs(value).format("DD/MM/YYYY"),
-          
-        },
-      ],
-    }));
+      {
+        recidencyId: propertyId,
+        date: dayjs(value).format("DD/MM/YYYY"),
+      },
+    ]));
   };
 
   const { mutate, isLoading } = useMutation({

@@ -14,7 +14,7 @@ const Bookings = () => {
   const { data, isError, isLoading } = useBookings();
   const [filter, setFilter] = useState("");
         
- console.log(data?.bookings)
+
     
 
    
@@ -58,7 +58,7 @@ const Bookings = () => {
    {data?.bookings.map((book, i) => (
     <div key={i} className="booking-container">
         <div className="booking-img-container">
-            <img src={book.image} alt="residency image" />
+            <img src={`http://localhost:7000/uploads/${book.image}`} alt="residency image" />
         </div>
         <div className="booking-left">
             <span className="booking-title">{book.title}</span>

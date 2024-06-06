@@ -37,7 +37,7 @@ export const createrecidency=async (req,res)=>{
 
 export const booking=async (req,res)=>{
     const {id,email,date,title,price,image}=req.body
-     
+     console.log(typeof date);
      
     try {
         
@@ -63,6 +63,7 @@ export const removeBooking=async (req,res)=>{
     try {
         const {email}=req.body
         const {id}=req.params
+        console.log(email,id);
         const response=await User.findOneAndUpdate({email},{
             $pull: {
                 bookvisit: {

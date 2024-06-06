@@ -4,7 +4,7 @@ import logoImg from "../../../dist/logo.png"
 const Footer = () => {
   return (
     <section className="f-wrapper">
-        <div className="paddings innerWidth flexCenter f-container">
+        <div className="paddings  flexCenter f-container">
             {/*left*/}
 
             <div className="flexColStart f-left">

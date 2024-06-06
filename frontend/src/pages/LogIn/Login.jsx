@@ -14,7 +14,7 @@ function Login() {
     mutationFn: () => login(email,password),
     onSuccess: () => {
       toast.success("Login successfully", { position: "bottom-right" });
-     navigate(-1)
+     navigate('/')
     },
   });
 

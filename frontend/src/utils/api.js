@@ -74,7 +74,7 @@ export const createUser = async (name,email,password,confirmPassword) => {
 
 
   export const bookVisit = async (email,id,date,title,price,image) => {
-    
+   
 
     try {
       const response=await api.post(
@@ -90,6 +90,9 @@ export const createUser = async (name,email,password,confirmPassword) => {
         },
         
       );
+      if(response){
+        console.log('success');
+      }
         
     } catch (error) {
       toast.error("Something went wrong, Please try again");
@@ -98,6 +101,7 @@ export const createUser = async (name,email,password,confirmPassword) => {
   };
 
   export const removeBook = async (email,id) => {
+    
     try {
       await api.post(
         `/removebooking/${id}`,
@@ -128,7 +132,7 @@ export const createUser = async (name,email,password,confirmPassword) => {
   export const getAllBookings=async(email)=>{
     try {
       const response=await api.post("/getallbookings",{email})
-      
+     
       return response.data
       
     } catch (error) {

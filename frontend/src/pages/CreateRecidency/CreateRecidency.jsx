@@ -18,8 +18,7 @@ import ReactImagePickerEditor from 'react-image-picker-editor';
 import 'react-image-picker-editor/dist/index.css'
 import { Button } from "@mantine/core";
 import { toast } from "react-toastify";
-import UserDetailContext from "../../Context/Context";
-import { useEffect } from "react";
+
 
 import defaultImg from '../../../dist/camera.png'
 const CreateRecidency = () => {
@@ -82,7 +81,7 @@ const CreateRecidency = () => {
         
            toast.success("Create successfully", { position: "bottom-right" });
            
-           navigate(-1)
+           navigate('/')
         
         },
       });
@@ -123,7 +122,7 @@ const handleFileChange = (e) => {
 
         <div className="img-container">
         <label htmlFor="file-upload" className="img-label">
-        {!file? <img src={defaultImg } alt="my img" className="default-img"/> : <img src={path} alt="my img" className="img-img"/>}
+        <img src={file? URL.createObjectURL(file) : defaultImg } alt="my img" className="default-img"/> 
       </label>
       <input id="file-upload" type="file" onChange={handleFileChange} style={{ display: 'none' }} />
        {/* {file? <img src={defaultImg } alt="my img" className="default-img"/> : <img src={path} alt="my img" className="img-img"/>}

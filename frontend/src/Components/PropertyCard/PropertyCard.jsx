@@ -8,7 +8,7 @@ function PropertyCard({card}) {
   const navigate=useNavigate()
   const imgPath=`http://localhost:7000/uploads/${card?.image}`
   return (
-    <div className=" r-card small" onClick={()=>(navigate(`../properties/${card._id}`))}>
+    <div className=" r-card small" onClick={()=>(navigate(`../myrecidencies/${card._id}`))}>
         
     <img src={imgPath} alt='home'  />
    

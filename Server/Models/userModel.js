@@ -24,7 +24,7 @@ const newSchema=mongoose.Schema({
             
           },
           date:{
-            type:Date
+            type:String
           },
           title:{
             type:String

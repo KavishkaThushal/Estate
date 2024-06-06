@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
-import { bookVisit, getpro, } from "../../utils/api";
+import { bookVisit, getpro, removeBook, } from "../../utils/api";
 import { PuffLoader } from "react-spinners";
 import { AiFillHeart } from "react-icons/ai";
 import "./Property.css";
@@ -15,17 +15,23 @@ import BookingModal from "../../components/BookingModal/BookingModal";
 
 import { Button } from "@mantine/core";
 import { toast } from "react-toastify";
-import UserDetailContext from "../../Context/Context";
+
+import { storeContext } from "../../utils/ContextStore";
+import useBookings from "../../hooks/useBookings";
 
 const OwnProperty = () => {
   const { pathname } = useLocation();
  
    const id = pathname.split("/").slice(-1)[0];
-  
-  
+   const userDataJSON = localStorage.getItem('userData');
 
+  const userData = JSON.parse(userDataJSON);
+  const email = userData?.email;
+    
+  const bookingdetails = useBookings();
    const { data, isLoading, isError } = useQuery(["resd", id], () =>
    getpro(id)
+   
  );
  
 
@@ -34,17 +40,20 @@ const OwnProperty = () => {
 
 
   const {
-    userDetails: {bookings,email },
-    setUserDetails,
-  } = useContext(UserDetailContext);
+    bookings,
+        setBookings,
+  } = useContext(storeContext);
 
   const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
-    mutationFn: () => removeBooking(id, email),
+    mutationFn: () => removeBook( email,id),
+    
     onSuccess: () => {
-      setUserDetails((prev) => ({
-        ...prev,
-        bookings: prev.bookings.filter((booking) => booking?.id !== id),
-      }));
+      
+      setBookings((prev) => ([
+      
+        Object.entries(prev).filter((booking) => booking.recidencyId !== id),
+      ]));
+
 
       toast.success("Booking cancelled", { position: "bottom-right" });
     },
@@ -129,7 +138,8 @@ const OwnProperty = () => {
             </div>
 
             {/* booking button */}
-            {bookings?.map((booking) => booking.
+            {bookings?.map((booking) => 
+            booking.
 recidencyId).includes(id) ? (
               <>
                 <Button
@@ -163,6 +173,9 @@ recidencyId).includes(id) ? (
               setOpened={setModalOpened}
               propertyId={id}
               email={email}
+              title={data.response?.title}
+              price={data.response?.price}
+              image={data.response?.image}
             />
           </div>
 

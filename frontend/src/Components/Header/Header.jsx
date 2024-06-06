@@ -2,7 +2,8 @@ import React from 'react'
 import './Header.css'
 import companyLogo from "../../../dist/logo.png"
 
-import { NavLink, useNavigate } from 'react-router-dom'
+
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
 
@@ -36,7 +37,7 @@ const renderheader=()=>{
     <section className='h-wrapper'>
         <div className="flexCenter paddings innerWidth h-container">
 
-           <img className="h-logo" src={companyLogo } alt="logo"  />
+           <Link to='/'><img className="h-logo" src={companyLogo } alt="logo"  /> </Link>
            
       
 
