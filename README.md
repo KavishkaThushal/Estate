@@ -20,3 +20,12 @@ Database: MongoDB
 Authentication: JSON Web Tokens (JWT)
 
 
+Group -5
+Contribution:
+19APC4007:H.M.K.T.Rasingolla  -Banckend and Frontend
+
+19APC4054-H.V.I.Dhananji-Frontend
+
+            
+
+
